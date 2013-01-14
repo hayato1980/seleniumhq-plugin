@@ -157,13 +157,11 @@ public class SeleniumhqBuilderTest extends HudsonTestCase
 		
 		String browser = "*iexplore";
 		String startURL = "http://www.google.com"; 
-		String suiteFile = "";
+		String suiteFile = getClass().getResource("emptyResult.html").toURI().toString();
 		String resultFile = "index.html";
 		String other = null;
         FreeStyleProject project = createFreeStyleProject();
-        suiteFile = new File(new File(project.getRootDir(), "workspace"), "emptyResult.html").toURI().toString();
         project.getBuildersList().add(new SeleniumhqBuilder(browser, startURL, suiteFile, resultFile, other));
-        project.setScm(new SingleFileSCM("emptyResult.html", getClass().getResource("emptyResult.html")));
         
         SeleniumhqBuilder.DESCRIPTOR.setSeleniumRunner("sdf");
         FreeStyleBuild build = project.scheduleBuild2(0).get();
