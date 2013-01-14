@@ -1,0 +1,33 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <!--
+    Creates a text field that shows the value of the "seleneseFile" property.
+    When submitted, it will be passed to the corresponding constructor parameter.
+  -->
+  <f:entry name="seleneseFile" title="selenese script" field="seleneseFile">
+    <f:textbox name="seleneseFile" field="seleneseFile" clazz="required"/>
+  </f:entry>
+  <f:entry name="browser" title="browser setting" field="browser">
+    <select name="browser">
+      <f:option value="firefox" selected="${instance.browser=='firefox'}">Firefox</f:option>
+      <f:option value="chrome" selected="${instance.browser=='chrome'}">Google chrome</f:option>
+      <f:option value="ie" selected="${instance.browser=='ie'}">Internet Exproler(experimental)</f:option>
+    </select>
+  </f:entry>
+  <f:advanced>
+    <f:entry name="screenshotAll" title="Get screenshot per command" field="screenshotAll">
+      <f:checkbox name="screenshotAll" field="screenshotAll"/>
+    </f:entry>
+    <f:entry name="screenshotOnFail" title="Get screenshot on fail" field="screenshotOnFail">
+      <f:checkbox name="screenshotOnFail" field="screenshotOnFail"/>
+    </f:entry>
+    <f:entry name="screenshotDir" title="Screenshot image directory" field="screenshotDir">
+      <f:textbox name="screenshotDir" field="screenshotDir"/>
+    </f:entry>
+    <f:entry name="baseUrl" title="override baseURL" field="baseUrl">
+      <f:textbox name="baseUrl" field="baseUrl"/>
+    </f:entry>
+    <f:entry name="junitresult" title="JUnit result xml dir" field="junitresult">
+      <f:textbox name="junitresult" field="junitresult"/>
+    </f:entry>
+  </f:advanced>
+</j:jelly>
