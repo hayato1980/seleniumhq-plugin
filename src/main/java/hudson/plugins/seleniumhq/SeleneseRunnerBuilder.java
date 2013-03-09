@@ -17,6 +17,8 @@ import java.io.Serializable;
 import java.util.Map;
 
 import jp.vmi.selenium.selenese.Runner;
+import jp.vmi.selenium.webdriver.DriverOptions;
+import jp.vmi.selenium.webdriver.DriverOptions.DriverOption;
 import jp.vmi.selenium.webdriver.WebDriverManager;
 import net.sf.json.JSONObject;
 
@@ -160,6 +162,15 @@ public class SeleneseRunnerBuilder extends Builder implements Serializable {
                         final WebDriverManager manager = new WebDriverManager();
                         try {
                             manager.setWebDriverFactory(browser);
+                            
+                            //TODO delete following code if implement path search feture in selenese-runner-java
+                            listener.getLogger().println("browser:" + browser);
+                            if (browser.equals(WebDriverManager.CHROME)) {
+                                manager.getDriverOptions().set(DriverOption.CHROMEDRIVER, PathUtils
+                                    .searchExecutableFile("chromedriver").get(0).getAbsolutePath());
+                                listener.getLogger().println("chromedriver:" + manager.getDriverOptions().get(DriverOption.CHROMEDRIVER));
+                            }
+
                             manager.getEnvironmentVariables().clear();
                             manager.getEnvironmentVariables().putAll(env);
 
