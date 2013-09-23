@@ -145,7 +145,7 @@ public class SeleneseRunnerBuilder extends Builder implements Serializable {
                         runner.setPrintStream(listener.getLogger());
 
                         //junitdir
-                        runner.setResultDir(junitdir.getRemote());
+                        runner.setJUnitResultDir(junitdir.getRemote());
 
                         //screenshot dir
                         if (screenshotAll && !StringUtils.isEmpty(screenshotDir)) {
